@@ -1,0 +1,14 @@
+Exec SQL
+select case 
+    when LOCATE('#',REGEXP_REPLACE('asdf&12345', 
+            '[^abcdefghijklmnopqrstuvwxyz0123456789 -]','#')) > 0 
+        then '1' 
+    end 
+    into :errdescflg
+    from sysibm.sysdummy1;
+
+if errdescflg = '1'
+    // error
+else;
+    //continue
+endif;
